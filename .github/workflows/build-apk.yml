@@ -44,12 +44,14 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Install Capacitor CLI
+        run: bun add --no-save @capacitor/cli@^8.2.0
+
       - name: Build web assets
         run: bun run build
 
       - name: Configure Capacitor Android
         run: |
-          bun add @capacitor/cli@^8.2.0
           cat > capacitor.config.ts <<'EOF'
           import type { CapacitorConfig } from '@capacitor/cli';
 
