@@ -1,12 +1,6 @@
 /* stylelint-disable no-descending-specificity -- This compatibility layer must override the legacy cascade. */
 
-/*
- * Monochrome 3 app chrome
- *
- * This layer intentionally sits after the compatibility stylesheet. It gives
- * the existing feature surfaces one restrained design language while their
- * controllers move to Preact route-by-route.
- */
+/* Loopin app chrome — adapted from the upstream Monochrome project. */
 
 :root {
     --sidebar-width: 228px;
@@ -28,6 +22,8 @@
     --chrome-ring-hover: 0 0 0 1px rgb(255 255 255 / 0.13);
     --chrome-elevation: 0 1px 2px rgb(0 0 0 / 0.16), 0 10px 30px rgb(0 0 0 / 0.16);
     --chrome-control: color-mix(in srgb, var(--foreground) 8%, var(--background));
+    --loopin-pink: #f04491;
+    --loopin-pink-soft: #ff75b5;
     --chrome-control-hover: color-mix(in srgb, var(--foreground) 13%, var(--background));
     --chrome-raised: color-mix(in srgb, var(--card) 88%, var(--background));
     --chrome-divider: color-mix(in srgb, var(--foreground) 9%, transparent);
@@ -35,22 +31,23 @@
 }
 
 :root[data-theme='monochrome'],
-:root:not([data-theme]) {
+:root:not([data-theme]),
+:root[data-theme='loopin'] {
     --background: #0b0b0b;
     --foreground: #f2f2f0;
     --card: #141414;
     --card-foreground: #f2f2f0;
-    --primary: #f2f2f0;
-    --primary-foreground: #0b0b0b;
+    --primary: #f04491;
+    --primary-foreground: #ffffff;
     --secondary: #1b1b1b;
     --secondary-foreground: #e4e4e1;
     --muted: #1a1a1a;
     --muted-foreground: #999995;
     --border: #292929;
     --input: #171717;
-    --ring: #f2f2f0;
-    --highlight: #f2f2f0;
-    --highlight-rgb: 242, 242, 240;
+    --ring: #f04491;
+    --highlight: #f04491;
+    --highlight-rgb: 240, 68, 145;
 }
 
 :root[data-theme='white'] {
@@ -1230,3 +1227,16 @@ body.sidebar-collapsed .now-playing-bar {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* Loopin signature accents */
+:root[data-theme='loopin'] .sidebar-nav .nav-item.active a::before { background-color: var(--loopin-pink); }
+:root[data-theme='loopin'] .btn-primary { background: var(--loopin-pink); color: #fff; }
+:root[data-theme='loopin'] .sidebar-nav .nav-item.active a,
+:root[data-theme='loopin'] .like-btn.active,
+:root[data-theme='loopin'] .track-item.playing,
+:root[data-theme='loopin'] .progress-fill,
+:root[data-theme='loopin'] .volume-fill { color: var(--loopin-pink); }
+:root[data-theme='loopin'] button:focus-visible,
+:root[data-theme='loopin'] a:focus-visible,
+:root[data-theme='loopin'] input:focus-visible { outline-color: var(--loopin-pink); }
