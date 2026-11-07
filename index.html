@@ -118,12 +118,12 @@
                         document.documentElement.classList.add('disable-blur-effects');
                     }
 
-                    const theme = localStorage.getItem('monochrome-theme');
+                    const savedTheme = localStorage.getItem('monochrome-theme');
+                    const theme = savedTheme && savedTheme !== 'monochrome' ? savedTheme : 'loopin';
                     const css = localStorage.getItem('custom_theme_css');
                     const palette = localStorage.getItem('monochrome-custom-theme');
-                    if (!theme) return;
-
                     document.documentElement.setAttribute('data-theme', theme);
+                    if (theme === 'loopin') localStorage.setItem('monochrome-theme', 'loopin');
 
                     if (theme === 'custom') {
                         if (css) {
